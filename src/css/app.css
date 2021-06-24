@@ -1,3 +1,14 @@
+body,
+html {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    border: 1px solid red;
+    font-size: 16px;
+}
+
+.loading {
+    background-color: orange !important;
 }
