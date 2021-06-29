@@ -10,5 +10,16 @@ body {
 }
 
 .loading {
-    background-color: orange !important;
+    background-color: grey!important;
+}
+
+#product-list li span {
+    display: block;
+}
+#product-list img {
+    max-width: 100px;
+}
+#product-list input, 
+#product-list button {
+    margin: 10px 0;
 }

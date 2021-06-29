@@ -15,10 +15,20 @@
 <body>
     <div class="container">
         <div id="knockout-app">
-            <ul class="list-unstyled" data-bind="foreach: items">
-                <li data-bind="text: $data"></li>
-            </ul>
+            <div id="product-list" data-bind="foreach: items">
+                <h4 data-bind="text:product"></h4>
+                <img data-bind="attr: {alt: product, src: image}" />
+                <div data-bind="foreach : colorOptions">
+                    <input-button params="inputText : color"></input-button>
+                </div>
+                <div data-bind="foreach : sizeOptions">
+                    <input-button params="inputText : size"></input-button>
+                </div>
+                <h5 data-bind="text: $parent.selectedValue"></h5>
+            </div>
             <loading-button params="buttonText : 'GET ALL ITEMS', 'action' : fetchItems, 'onDone': onNewItems">
+            </loading-button>
+            <loading-button params="buttonText : 'Save', 'action' : onSave">
             </loading-button>
         </div>
     </div>
@@ -29,6 +39,9 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"
         integrity="sha512-2AL/VEauKkZqQU9BHgnv48OhXcJPx9vdzxN1JrKDVc4FPU/MEE/BZ6d9l0mP7VmvLsjtYwqiYQpDskK9dG8KBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js"
+        integrity="sha512-1LyBPWtezbX0LO4X4QzhfZd9jSetVu5W0IFpMV9ecq4lJUQBR6hx8uiNfUI2Aoe7LCF4rK1NV3rY+uil4VJ3QQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/app.js"></script>
 </body>
