@@ -18,18 +18,21 @@
             <div id="product-list" data-bind="foreach: items">
                 <h4 data-bind="text:product"></h4>
                 <img data-bind="attr: {alt: product, src: image}" />
-                <div data-bind="foreach : colorOptions">
-                    <input-button params="inputText : color"></input-button>
+
+                <h4>Color: <span data-bind="text: $parent.isSelectedColor"></span></h4>
+                <div data-bind="foreach : colorOptions" class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <!-- /<input-button params="inputText : color"></input-button> -->
+                    <input type="button" class="btn btn-secondary" data-bind="value: color, click: $root.updateValue, attr: { 'item-index' : $index, 'data-colorcode' : color }" />
                 </div>
-                <div data-bind="foreach : sizeOptions">
-                    <input-button params="inputText : size"></input-button>
+                <h4>Size: <span data-bind="text: $parent.isSelectedSize"></span></h4>
+                <div data-bind="foreach : sizeOptions" class="btn-group" role="group" aria-label="size group">
+                    <!-- <input-button params="inputText : size"></input-button> -->
+                    <input type="button" class="btn btn-secondary" data-bind="value: size, click: $root.updateValue, attr: { 'item-index' : $index, 'data-text' : size }" />
                 </div>
-                <h5 data-bind="text: $parent.selectedValue"></h5>
             </div>
             <loading-button params="buttonText : 'GET ALL ITEMS', 'action' : fetchItems, 'onDone': onNewItems">
             </loading-button>
-            <loading-button params="buttonText : 'Save', 'action' : onSave">
-            </loading-button>
+            <button type="button" class="btn btn-primary" data-bind="click: saveItems">Save</button>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
