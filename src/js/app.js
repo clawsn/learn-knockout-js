@@ -3,12 +3,6 @@ function itemModelView() {
 
     self.items = ko.observableArray([]);
 
-    self.updateValue = function (value, event) {
-        console.log('clicked update', value);
-        // self.isSelectedColor(value.color)
-        // self.isSelectedSize(value.size)
-    }
-
     self.fetchItems = function (callback) {
         console.log('fetching....');
         setTimeout(function () {
@@ -99,22 +93,6 @@ ko.components.register('loading-button', {
                 params.onDone(data);
             });
         }
-    }
-})
-ko.components.register('input-button', {
-    template: [
-        '<input type="radio" data-bind="value: inputText, click: onClick"><span data-bind="text: inputText"></span>',
-    ].join(''),
-    viewModel: function (params) {
-        var self = this;
-        self.inputText = ko.observable(params.inputText);
-        self.onClick = function () {
-            console.log('clicked???')
-            console.log('Selected: ', params.inputText);
-            params.action(function (data) {
-                console.log(data);
-            }
-        )};
     }
 })
 

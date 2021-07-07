@@ -21,9 +21,6 @@
                 <div class="container">
                     <h4>Color: <span class="dst"></span></h4>
                     <div data-bind="foreach : colorOptions" class="box" data-toggle="buttons">
-                        <!-- <label class="btn btn-primary" for="product-color">
-                            <input type="radio" data-bind="value: color" name="product-color"><span data-bind="text: color"></span>
-                        </label> -->
                         <input type="radio" data-bind="value: color, attr: { name: 'product-color-' + $parentContext.$index()}" class="product-checkbox"><span data-bind="text: color"></span>
                     </div>
                     <small class="error"></small>
@@ -31,9 +28,6 @@
                 <div class="container">
                     <h4>Size: <span class="dst"></span></h4>
                     <div data-bind="foreach : sizeOptions" class="box" data-toggle="buttons">
-                        <!-- <label class="btn btn-primary" for="product-size">
-                            <input type="radio" data-bind="value: size" name="product-size"><span data-bind="text: size"></span>
-                        </label> -->
                         <input type="radio" data-bind="value: size, attr: { name: 'product-size-' + $parentContext.$index()}" class="product-checkbox"><span data-bind="text: size"></span>
                     </div>
                     <small class="error"></small>
