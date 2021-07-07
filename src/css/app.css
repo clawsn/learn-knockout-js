@@ -23,7 +23,6 @@ body {
 #product-list button {
     margin: 10px 0;
 }
-#product-list input.selected {
-    background-color: orange;
-    border: 2px solid black;
+.error {
+    color: red;
 }

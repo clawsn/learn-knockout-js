@@ -1,17 +1,10 @@
-
 function itemModelView() {
     var self = this;
 
     self.items = ko.observableArray([]);
-    self.selectedValues = ko.observableArray()
-
-    self.isSelectedColor = ko.observable('')
-    self.isSelectedSize = ko.observable('');
 
     self.updateValue = function (value, event) {
-
         console.log('clicked update', value);
-        self.selectedValues.push(value.color)
         // self.isSelectedColor(value.color)
         // self.isSelectedSize(value.size)
     }
@@ -49,7 +42,7 @@ function itemModelView() {
                             { "size": "small" },
                             { "size": "medium" },
                             { "size": "large" },
-                            { "size": "XL" }
+                            { "size": "xl" }
 
                         ]
                     }
@@ -61,12 +54,28 @@ function itemModelView() {
     self.onNewItems = function (newItems) {
         self.items(newItems)
     }
-
-    // on save checks if color and size are selected
-    // If not selected message prompts to select, and saveing doesnt go to minicart
-
-    self.saveItems = function () {
-        console.log('save selected options')
+    self.onSave = function () {
+        let checkOptions = true
+        $(".container").children(".box").each(function(){
+            $(this).children("input[type='radio']").each(function(){
+                if (!$(this).prop("checked")) {
+                    $(this).parent().parent().children('.error').text("Please Select");
+                    checkOptions = false;
+                } else {
+                    let optionValue = $(this).val()
+                    $(this).parent().parent().children('h4').children('.dst').text(optionValue);
+                    $(this).parent().parent().children('.error').hide();
+                    checkOptions = true;
+                    return false;
+                } 
+            });
+        });
+        if(checkOptions){
+            console.log('One radio in each group is checked.');
+            $('#success').text('Successfully selected each radio, proceed to cart logic.')
+        } else {
+            console.log('Please select one option in each question.');
+        }
     }
 }
 
@@ -86,7 +95,6 @@ ko.components.register('loading-button', {
             self.isLoading(true);
             console.log('loading-btn clicked')
             params.action(function (data) {
-                console.log('in action')
                 self.isLoading(false);
                 params.onDone(data);
             });
@@ -95,14 +103,18 @@ ko.components.register('loading-button', {
 })
 ko.components.register('input-button', {
     template: [
-        '<input type="button" class="btn btn-secondary" data-bind="value: inputText, click: onClick" >',
+        '<input type="radio" data-bind="value: inputText, click: onClick"><span data-bind="text: inputText"></span>',
     ].join(''),
     viewModel: function (params) {
         var self = this;
         self.inputText = ko.observable(params.inputText);
         self.onClick = function () {
+            console.log('clicked???')
             console.log('Selected: ', params.inputText);
-        }
+            params.action(function (data) {
+                console.log(data);
+            }
+        )};
     }
 })
 
