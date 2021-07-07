@@ -11,6 +11,7 @@ body {
 
 .loading {
     background-color: grey!important;
+    border: 1px solid #ccc;
 }
 
 #product-list li span {
@@ -25,4 +26,10 @@ body {
 }
 .error {
     color: red;
+}
+.disable-btn {
+    pointer-events: none;
+    cursor: disabled;
+    background-color: grey;
+    border: 1px solid #ccc;
 }

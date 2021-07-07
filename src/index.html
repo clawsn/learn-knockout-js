@@ -36,7 +36,7 @@
             <hr />
             <loading-button params="buttonText : 'GET ALL ITEMS', 'action' : fetchItems, 'onDone': onNewItems">
             </loading-button>
-            <input type="submit" class="btn btn-primary" value="Save" data-bind="click: onSave" />
+            <input type="submit" class="btn btn-primary" value="Save" data-bind="click: onSave, css: {'disable-btn': saveBtnDisabled}" />
             <h4 id="success" style="color: green;"></h4>
         </div>
     </div>

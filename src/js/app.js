@@ -2,6 +2,7 @@ function itemModelView() {
     var self = this;
 
     self.items = ko.observableArray([]);
+    self.saveBtnDisabled = ko.observable(true)
 
     self.fetchItems = function (callback) {
         console.log('fetching....');
@@ -43,23 +44,26 @@ function itemModelView() {
                 ]
             };
             callback(MOCK_RESPONSE.offer)
-        }, 1000)
+        }, 1000);
+        
     }
     self.onNewItems = function (newItems) {
+        self.saveBtnDisabled(false)
         self.items(newItems)
     }
     self.onSave = function () {
         let checkOptions = true
         $(".container").children(".box").each(function(){
             $(this).children("input[type='radio']").each(function(){
+                console.log($(this), '??')
+                var name = $(this).attr("name");
                 if (!$(this).prop("checked")) {
                     $(this).parent().parent().children('.error').text("Please Select");
-                    checkOptions = false;
+                    if($("input:radio[name="+name+"]:checked").length == 0) checkOptions = false;
                 } else {
                     let optionValue = $(this).val()
                     $(this).parent().parent().children('h4').children('.dst').text(optionValue);
                     $(this).parent().parent().children('.error').hide();
-                    checkOptions = true;
                     return false;
                 } 
             });
