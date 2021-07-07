@@ -55,7 +55,6 @@ function itemModelView() {
         let checkOptions = true
         $(".container").children(".box").each(function(){
             $(this).children("input[type='radio']").each(function(){
-                console.log($(this), '??')
                 var name = $(this).attr("name");
                 if (!$(this).prop("checked")) {
                     $(this).parent().parent().children('.error').text("Please Select");
